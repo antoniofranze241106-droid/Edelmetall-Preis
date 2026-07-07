@@ -195,19 +195,15 @@ async function fetchLatestPrices() {
   // --- REAL API HOOK-UP GOES HERE ---
   // const res = await fetch("/api/prices");
   // if (!res.ok) throw new Error("Preise konnten nicht geladen werden");
-  // return res.json();
+  // return const res = await fetch("/api/prices");
 
-  await new Promise((r) => setTimeout(r, 350)); // simulates network latency
-  const result = {};
-  METALS.forEach((m) => {
-    const series = generateSeries(m, TIMEFRAMES[0]);
-    result[m.id] = {
-      usdPerGram: m.basePriceUSDPerGram,
-      changePct: ((series[series.length - 1].price - series[0].price) / series[0].price) * 100,
-    };
-  });
-  return result;
-}
+const res = await fetch("/api/prices");
+if (!res.ok) throw new Error("Preise konnten nicht geladen werden");
+return res.json();
+
+
+
+   
 
 // Returns: [{ t: timestampMs, price: usdPerGram }, ...]
 async function fetchHistory(metal, timeframe) {
